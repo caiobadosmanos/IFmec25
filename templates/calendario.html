@@ -9,21 +9,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById('calendar')) {
+            const eventosDoFlask = {{ eventos | tojson | safe }};
+
             const calendar = new window.FullCalendar.Calendar(document.getElementById('calendar'), {
                 initialView: 'dayGridMonth',
                 locale: 'pt-br',
-                events: [
-                    {
-                        title: 'Reunião importante',
-                        start: '2025-04-23'
-                    },
-                    {
-                        title: 'Evento IF',
-                        start: '2025-04-25',
-                        end: '2025-04-27'
-                    }
-                ]
+                events: eventosDoFlask  // <- aqui precisa estar dentro do objeto de config
             });
+
             calendar.render();
         }
     });

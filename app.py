@@ -67,7 +67,7 @@ def calendario():
     print(calendario)
 
 
-    return render_template("calendario.html")
+    return render_template("calendario.html",eventos=json_formatado)
 
 if __name__ == "__main__":
     app.run(debug=True)
