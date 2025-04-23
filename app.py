@@ -91,11 +91,29 @@ def calendario():
 
 @app.route("/adicionar", methods=["GET", "POST"])
 def adicionar():
+    if request.method == "POST":
+         if "dia" in request.form:
+            dia = request.form["dia"]
+            texto=request.form["texto"]
+            mes =request.form["mes"]
+            title =request.form["titulo"]
+            print(dia, mes, title, texto)
+            db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
+            redirect("/calendario")
+
 
     return render_template("adicionar.html")
         
 @app.route("/deletar", methods=["GET", "POST"])
 def deletar():
+    if request.method == "POST":
+        if "delete" in request.form:
+            title =request.form["titulo"]
+            
+
+            db.execute("DELETE FROM Calendario WHERE title = ?", title)
+            redirect("/calendario")
+
 
     return render_template("deletar.html")
         
