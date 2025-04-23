@@ -14,13 +14,43 @@
             const calendar = new window.FullCalendar.Calendar(document.getElementById('calendar'), {
                 initialView: 'dayGridMonth',
                 locale: 'pt-br',
-                events: eventosDoFlask  // <- aqui precisa estar dentro do objeto de config
+                events: eventosDoFlask,
+                dateClick: function(info) {
+                    const titulo = prompt("Título do evento:");
+                    if (titulo) {
+                        const data = new Date(info.dateStr);
+                        const dia = data.getDate();
+                        const mes = data.getMonth() + 1;
+
+                        fetch("/calendario", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                dia: dia,
+                                mes: mes,
+                                titulo: titulo,
+                                texto: ""
+                            })
+                        }).then(res => res.json())
+                          .then(data => {
+                              if (data.status === "ok") {
+                                  calendar.addEvent({
+                                      title: titulo,
+                                      start: info.dateStr
+                                  });
+                              }
+                          });
+                    }
+                }
             });
 
             calendar.render();
         }
     });
 </script>
+
 
     <div id='calendar'></div>
 
@@ -43,7 +73,7 @@
         <p>Titulo</p>
         <input type="text" name="titulo" placeholder="Título">
         
-        <button type="submit">Adicionar</button>
+        <button type="submit">Deletar</button>
     </form>
     
 

@@ -51,9 +51,16 @@ def calendario():
             db.execute("DELETE FROM Calendario WHERE title = ?", title)
             redirect("/calendario")
 
+        if request.is_json:
+                    data = request.get_json()
+                    dia = data["dia"]
+                    mes = data["mes"]
+                    titulo = data["titulo"]
+                    texto = data.get("texto", "")
+                    db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)", dia, mes, titulo, texto)
+                    return jsonify({"status": "ok"})
 
-
-            
+                    
 
 
         if "dia" in request.form:
