@@ -9,7 +9,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById('calendar')) {
-            var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+            const calendar = new window.FullCalendar.Calendar(document.getElementById('calendar'), {
                 initialView: 'dayGridMonth',
                 locale: 'pt-br',
                 events: [
