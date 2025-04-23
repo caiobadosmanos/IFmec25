@@ -84,3 +84,17 @@ a {
     background-color: #1b5e20;
 }
 
+
+.button {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #1b5e20;
+}
+
