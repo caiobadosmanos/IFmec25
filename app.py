@@ -89,5 +89,15 @@ def calendario():
 
     return render_template("calendario.html",eventos=json_formatado)
 
+@app.route("/adicionar", methods=["GET", "POST"])
+def adicionar():
+
+    return render_template("adicionar.html")
+        
+@app.route("/deletar", methods=["GET", "POST"])
+def deletar():
+
+    return render_template("deletar.html")
+        
 if __name__ == "__main__":
     app.run(debug=True)
