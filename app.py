@@ -44,13 +44,26 @@ def contatos():
 @app.route("/calendario", methods=["GET", "POST"])
 def calendario():
     if request.method == "POST":
-        dia = request.form["dia"]
-        texto=request.form["texto"]
-        mes =request.form["mes"]
-        title =request.form["titulo"]
-        print(dia, mes, title, texto)
-        db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
-        redirect("/calendario")
+        if "delete" in request.form:
+            title =request.form["titulo"]
+            
+
+            db.execute("DELETE FROM Calendario WHERE title = ?", title)
+            redirect("/calendario")
+
+
+
+            
+
+
+        if "dia" in request.form:
+            dia = request.form["dia"]
+            texto=request.form["texto"]
+            mes =request.form["mes"]
+            title =request.form["titulo"]
+            print(dia, mes, title, texto)
+            db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
+            redirect("/calendario")
 
     calendario = db.execute("SELECT * from Calendario")
 
