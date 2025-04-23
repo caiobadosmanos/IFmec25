@@ -6,29 +6,30 @@
 {% endblock %}
 
 {% block main %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'pt-br',
+            events: [
+                {
+                    title: 'Reunião importante',
+                    start: '2025-04-23'
+                },
+                {
+                    title: 'Evento IF',
+                    start: '2025-04-25',
+                    end: '2025-04-27'
+                }
+            ]
+        });
+
+        calendar.render();
+    });
+</script>
     <div id='calendar'></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'pt-br',
-                events: [
-                    {
-                        title: 'Reunião importante',
-                        start: '2025-04-23'
-                    },
-                    {
-                        title: 'Evento IF',
-                        start: '2025-04-25',
-                        end: '2025-04-27'
-                    }
-                ]
-            });
-
-            calendar.render();
-        });
-    </script>
 {% endblock %}
