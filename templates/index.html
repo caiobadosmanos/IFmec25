@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Caio-Gpt
+{% endblock %}
+
+{% block main %}
+<div id="instrucoes">
+    <h4 class="center-text">Para usar, basta digitar seu prompot!</h4>
+</div>
+
+<!-- Campo de entrada e botão de envio -->
+<div class="form-container">
+    <input id="question" type="text" autocomplete="off" autofocus placeholder="Digite aqui" class="input-field">
+    <button id="enviar" class="submit-button">Enviar</button>
+</div>
+
+<!-- Botão para "Gerar Novamente" -->
+<div id="gerar-novamente-container" class="center-button" style="display: none;">
+    <button id="gerar-novamente" class="submit-button">Gerar Novamente</button>
+</div>
+
+<!-- Mensagem de carregamento -->
+<div id="loading" class="center-text" style="display: none;">
+    <p>Gerando sua receita, aguarde...</p>
+</div>
+
+<!-- Área de saída -->
+<div id="output-container" class="output-container"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const enviarButton = document.getElementById("enviar");
+        const gerarNovamenteButton = document.getElementById("gerar-novamente");
+        const questionInput = document.getElementById("question");
+        const outputContainer = document.getElementById("output-container");
+        const loadingMessage = document.getElementById("loading");
+        const gerarNovamenteContainer = document.getElementById("gerar-novamente-container");
+
+        // Função para enviar dados para o servidor
+        const enviarRequisicao = (action) => {
+            const question = questionInput.value;
+            loadingMessage.style.display = "block";
+            outputContainer.innerHTML = "";
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({
+                    action: action,
+                    question: question,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    loadingMessage.style.display = "none";
+                    outputContainer.innerHTML = `<p>${data.resposta}</p>`;
+                    if (action === "question") {
+                        gerarNovamenteContainer.style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    loadingMessage.style.display = "none";
+                    outputContainer.innerHTML = `<p>Ocorreu um erro: ${error}</p>`;
+                });
+        };
+
+        // Evento para o botão "Enviar"
+        enviarButton.addEventListener("click", () => {
+            enviarRequisicao("question");
+        });
+
+        // Evento para o botão "Gerar Novamente"
+        gerarNovamenteButton.addEventListener("click", () => {
+            enviarRequisicao("gerar_novamente");
+        });
+    });
+</script>
+{% endblock %}

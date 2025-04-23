@@ -1,0 +1,188 @@
+/* Estilos Globais */
+body {
+    background-color: #fff;
+    color: #212529;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+/* Aplica margem para todos os elementos exceto .output-container */
+* {
+    margin: 5px;  /* Ajuste a margem conforme necessário */
+    margin-bottom: 10px;
+}
+
+/* Remover margem de .output-container */
+.output-container {
+margin:20px;
+}
+
+/* Container */
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: blue;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    margin: 0px;
+}
+
+.header-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Direitos Reservados */
+.footer-link {
+    font-size: 0.9rem;
+    font-weight: 900; /* Espessura máxima */
+    text-align: left;
+    width: 100%;
+    background-color: white;
+    padding: 5px 0;
+}
+
+.footer-text {
+    color: #000;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-top:100px;
+}
+
+.footer-text:hover {
+    text-decoration: underline;
+}
+
+/* Título */
+.site-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #000;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Centralizar Texto */
+.center-text {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+/* Formulário */
+.form-container {
+    margin-bottom: 50px;
+    text-align: center;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Inputs e Botões */
+input, button {
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.15s ease-in-out;
+}
+
+button, input[type="submit"] {
+    background-color: #d9edff;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+input[type="text"], input[type="number"] {
+    width: 25%;
+    line-height: 1.8;
+}
+
+input[type="text"]:hover, input[type="number"]:hover {
+    background-color: #f5f5f5;
+}
+
+/* Seções de Saída */
+.output-container {
+
+    text-align: left;
+}
+
+.input-field {
+    width: 300px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.center-button {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #000;
+    background: white;
+}
+
+.strong-text {
+    font-weight: 600;
+}
+button {
+    transition: transform 0.3s ease; /* Transição suave de 0.3 segundos */
+  }
+
+  button:hover {
+    transform: scale(1.2); /* Aumenta o tamanho em 10% */
+  }
+  input[type="submit"] {
+    background-color: #d9edff;
+    border: 1px solid transparent;
+    text-align: center;
+    transition: transform 0.3s ease; /* Transição suave de 0.3 segundos */
+}
+input[type="submit"]:hover {
+    transform: scale(1.2);
+}
+#instruções{
+    margin:10px;
+    background-color: #fa8a50;
+    padding: 15px;
+    border: 5px;
+    border-color:black;
+
+
+}
+#enviar{
+    margin:0px;
+}
