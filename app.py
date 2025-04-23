@@ -2,7 +2,7 @@ import requests
 import json
 from flask import Flask, render_template, request, jsonify
 
-
+from cs50 import SQL
 #conectar ao data base
 
 db = SQL("sqlite:///if.db")
