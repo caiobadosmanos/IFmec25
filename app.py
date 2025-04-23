@@ -42,6 +42,10 @@ def home():
 def contatos():
     return render_template("contatos.html")
 
+@app.route("/calendario", methods=["GET", "POST"])
+def home():
+
+    return render_template("calendario.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
