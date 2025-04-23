@@ -16,12 +16,25 @@
                 locale: 'pt-br',
                 events: eventosDoFlask,
                 dateClick: function(info) {
+                    // Pede título e texto ao clicar na data
                     const titulo = prompt("Título do evento:");
-                    if (titulo) {
+                    const texto = prompt("Texto do evento:");
+
+                    if (titulo && texto) {
                         const data = new Date(info.dateStr);
                         const dia = data.getDate();
                         const mes = data.getMonth() + 1;
 
+                        // Adiciona o evento no calendário
+                        calendar.addEvent({
+                            title: titulo,
+                            start: info.dateStr,
+                            extendedProps: {
+                                texto: texto
+                            }
+                        });
+
+                        // Envia os dados para o backend (caso você queira salvar no banco de dados)
                         fetch("/calendario", {
                             method: "POST",
                             headers: {
@@ -31,18 +44,23 @@
                                 dia: dia,
                                 mes: mes,
                                 titulo: titulo,
-                                texto: ""
+                                texto: texto
                             })
                         }).then(res => res.json())
                           .then(data => {
                               if (data.status === "ok") {
-                                  calendar.addEvent({
-                                      title: titulo,
-                                      start: info.dateStr
-                                  });
+                                  console.log("Evento adicionado com sucesso!");
                               }
                           });
                     }
+                },
+                eventClick: function(info) {
+                    // Pega o título e o texto do evento
+                    const titulo = info.event.title;
+                    const texto = info.event.extendedProps.texto;
+
+                    // Mostra o texto em um alert (ou personaliza para exibir em outro lugar, como um modal)
+                    alert("Título: " + titulo + "\n\nTexto: " + texto);
                 }
             });
 
@@ -50,6 +68,7 @@
         }
     });
 </script>
+
 
 
     <div id='calendar'></div>

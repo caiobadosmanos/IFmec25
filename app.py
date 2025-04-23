@@ -77,8 +77,11 @@ def calendario():
     #converte para jonson
     json_formatado = [
         {
-        "title": evento["title"],
-            "start": f"2025-{evento['month']:02d}-{evento['day']:02d}"
+            "title": evento["title"],
+            "start": f"2025-{evento['month']:02d}-{evento['day']:02d}",
+            "extendedProps": {
+                "texto": evento["texto"]
+            }
         }
         for evento in calendario
     ]
