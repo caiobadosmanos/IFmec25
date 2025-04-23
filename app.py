@@ -9,9 +9,7 @@ db = SQL("sqlite:///if.db")
 
 app = Flask(__name__)
 
-# Chave de API diretamente no código
-API_KEY = 'AIzaSyAIOAHZsjsWQ8rP7NTI4QsWBtI7XuEauiY'
-API_URL = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}'
+
 
 # Variável global para armazenar o input do usuário
 user_input = ""
