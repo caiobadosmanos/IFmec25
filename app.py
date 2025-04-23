@@ -47,6 +47,7 @@ def calendario():
         texto=request.form["texto"]
         mes =request.form["mes"]
         title =request.form["titulo"]
+        print(dia, mes, title, texto)
         db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
 
     calendario = db.execute("SELECT * from Calendario")
