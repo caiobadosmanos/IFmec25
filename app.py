@@ -1,6 +1,7 @@
 import requests
 import json
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify,redirect
+from datetime import date
 
 from cs50 import SQL
 #conectar ao data base
@@ -49,8 +50,21 @@ def calendario():
         title =request.form["titulo"]
         print(dia, mes, title, texto)
         db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
+        redirect("/calendario")
 
     calendario = db.execute("SELECT * from Calendario")
+
+    #converte para jonson
+    json_formatado = [
+        {
+        "title": evento["title"],
+            "start": f"2025-{evento['month']:02d}-{evento['day']:02d}"
+        }
+        for evento in calendario
+    ]
+
+
+    print(calendario)
 
 
     return render_template("calendario.html")
