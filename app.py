@@ -26,7 +26,7 @@ def call_api(user_input):
     headers = {
         'Content-Type': 'application/json'
     }
-    response = requests.post(API_URL, headers=headers, data=json.dumps(data))
+    response = requests.post(1, headers=headers, data=json.dumps(data))
     return response
 
 
@@ -42,6 +42,15 @@ def contatos():
 
 @app.route("/calendario", methods=["GET", "POST"])
 def calendario():
+    if request.method == "POST":
+        dia = request.form["dia"]
+        texto=request.form["texto"]
+        mes =request.form["mes"]
+        title =request.form["titulo"]
+        db.execute("INSERT INTO Calendario (day, month, title, texto) VALUES (?, ?, ?, ?)",dia, mes, title, texto)
+
+    calendario = db.execute("SELECT * from Calendario")
+
 
     return render_template("calendario.html")
 
