@@ -43,7 +43,7 @@ def contatos():
     return render_template("contatos.html")
 
 @app.route("/calendario", methods=["GET", "POST"])
-def home():
+def calendario():
 
     return render_template("calendario.html")
 
