@@ -34,43 +34,9 @@ def call_api(user_input):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    global user_input  # Declaração para usar a variável global
-    global resposta  # Declaração para usar a variável global
 
-    if request.method == "POST":
-        # Obtém o tipo de requisição (normal ou botão "Gerar Novamente")
-        action = request.form.get("action", "question")
-
-        if action == "question":
-            # Solicita ao usuário o conteúdo
-            user_input = request.form.get("question")
-
-            if not user_input:
-                return jsonify({"resposta": "Por favor, forneça os ingredientes."})
-
-            # Adiciona formatação específica ao input
-            user_input += (
-                "obs: ao invés de usar sua formatação normal use <bold>para negrito</bold>, "
-                "<ul><li>para listas</li><li>não ordenadas</li></ul> <p>para parágrafos</p> "
-                "e <ol><li>para listas</li><li>que são ordenadas</li></ol>, e não cite essas ordens no seu output;"
-            )
-
-        elif action == "gerar_novamente":
-            # Ajusta o input para gerar uma receita inusitada
-            user_input += " obs: tente algo que vc nao tentaria"
-
-        # Chama a API
-        response = call_api(user_input)
-
-        if response.status_code == 200:
-            response_data = response.json()
-            resposta = response_data['candidates'][0]['content']['parts'][0]['text']
-            return jsonify({"resposta": resposta})
-        else:
-            return jsonify({"resposta": f"Erro {response.status_code}: {response.text}"})
-
-    return render_template("index.html", resposta=resposta)
-
+    return render_template("index.html")
+        
 
 @app.route("/contatos", methods=["GET", "POST"])
 def contatos():
