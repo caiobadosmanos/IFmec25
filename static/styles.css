@@ -34,3 +34,13 @@ a {
     color: #fff;
     font-size: 1.2rem;
 }
+
+  #calendar {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    height: 600px; /* ESSENCIAL */
+  }
+
